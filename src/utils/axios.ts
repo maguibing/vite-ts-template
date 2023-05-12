@@ -4,7 +4,7 @@ import axios from 'axios';
  * 创建实例
  * 与后端服务通信
  */
-const HttpClient = axios.create({
+const request = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
 });
 
@@ -12,7 +12,7 @@ const HttpClient = axios.create({
  * 请求拦截器
  * 功能：配置请求头
  */
-HttpClient.interceptors.request.use(
+request.interceptors.request.use(
   (config) => {
     const token = '222';
     config.headers.authorization = 'Bearer ' + token;
@@ -28,7 +28,7 @@ HttpClient.interceptors.request.use(
  * 响应拦截器
  * 功能：处理异常
  */
-HttpClient.interceptors.response.use(
+request.interceptors.response.use(
   (config) => {
     return config;
   },
@@ -37,4 +37,4 @@ HttpClient.interceptors.response.use(
   },
 );
 
-export default HttpClient;
+export default request;
